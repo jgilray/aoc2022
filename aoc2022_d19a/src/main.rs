@@ -147,8 +147,8 @@ fn dfs(s: &State, bp: &Blueprint, hm: &mut HashMap<State, u16>, best: &mut u16) 
         next_state.clay_robot_num -= 1;
     }
 
-    // build ore robot option - only if we don't have enough ore to build other 3 robots (2x speedup)
-    if s.ore_amt < bp.clay_rob_cost + bp.obs_rob_cost_ore + bp.geo_rob_cost_ore
+    // build ore robot option - only if we don't already have enough ore to build first 3 robots (2x speedup)
+    if s.ore_amt < bp.ore_rob_cost + bp.clay_rob_cost + bp.obs_rob_cost_ore
         && s.ore_amt >= bp.ore_rob_cost
     {
         next_state.ore_amt -= bp.ore_rob_cost;
